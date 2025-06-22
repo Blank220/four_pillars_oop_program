@@ -48,6 +48,21 @@ class Food:
         canvas.coords(self.square, self.coordinates[0], self.coordinates[1],
                       self.coordinates[0] + SPACE_SIZE, self.coordinates[1] + SPACE_SIZE)
 
+def next_turn(snake):
+    global food, score
+
+    x, y = snake.coordinates[0]
+
+    if direction == "up":
+        y -= SPACE_SIZE
+    elif direction == "down":
+        y += SPACE_SIZE
+    elif direction == "left":
+        x -= SPACE_SIZE
+    elif direction == "right":
+        x += SPACE_SIZE
+
+        
 window = Tk()
 window.title("Snake game")
 window.resizable(False, False)
