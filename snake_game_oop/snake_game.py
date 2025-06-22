@@ -33,6 +33,21 @@ class Snake:
         canvas.delete(self.squares[-1])
         del self.squares[-1]
 
+class Food:
+    def __init__(self, snake_coordinates):
+        # Generate food position not overlapping snake coordinates
+        while True:
+            x = random.randint(0, (GAME_WIDTH // SPACE_SIZE) - 1) * SPACE_SIZE
+            y = random.randint(0, (GAME_HEIGHT // SPACE_SIZE) - 1) * SPACE_SIZE
+            if (x, y) not in snake_coordinates:
+                break
+        self.coordinates = [x, y]
+        self.square = canvas.create_rectangle(x, y, x + SPACE_SIZE, y + SPACE_SIZE, fill=FOOD_COLOR, tag="food")
+
+    def draw(self):
+        canvas.coords(self.square, self.coordinates[0], self.coordinates[1],
+                      self.coordinates[0] + SPACE_SIZE, self.coordinates[1] + SPACE_SIZE)
+
 window = Tk()
 window.title("Snake game")
 window.resizable(False, False)
