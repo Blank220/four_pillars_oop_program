@@ -135,5 +135,17 @@ y = int((screen_height // 2) - (window_height // 2))
 
 window.geometry(f"{window_width}x{window_height}+{x}+{y}")
 
+# Bind WASD keys for movement
+window.bind('w', lambda event: change_direction('up'))
+window.bind('a', lambda event: change_direction('left'))
+window.bind('s', lambda event: change_direction('down'))
+window.bind('d', lambda event: change_direction('right'))
+
+snake = Snake()
+food = Food(snake.coordinates)
+
+next_turn(snake)
+
+window.mainloop()
 
 window.mainloop()
