@@ -81,6 +81,21 @@ def next_turn(snake):
     else:
         window.after(SPEED, next_turn, snake)
 
+def change_direction(new_direction):
+    global direction
+    if new_direction == 'left':
+        if direction != 'right':
+            direction = new_direction
+    elif new_direction == 'right':
+        if direction != 'left':
+            direction = new_direction
+    elif new_direction == 'up':
+        if direction != 'down':
+            direction = new_direction
+    elif new_direction == 'down':
+        if direction != 'up':
+            direction = new_direction
+            
 window = Tk()
 window.title("Snake game")
 window.resizable(False, False)
