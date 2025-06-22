@@ -62,7 +62,25 @@ def next_turn(snake):
     elif direction == "right":
         x += SPACE_SIZE
 
-        
+    # Wrap around screen edges
+    x %= GAME_WIDTH
+    y %= GAME_HEIGHT
+
+    snake.move(x, y)
+
+    if x == food.coordinates[0] and y == food.coordinates[1]:
+        score += 1
+        label.config(text="Score:{}".format(score))
+        canvas.delete("food")
+        food = Food(snake.coordinates)
+    else:
+        snake.remove_tail()
+
+    if check_collisions(snake):
+        game_over()
+    else:
+        window.after(SPEED, next_turn, snake)
+
 window = Tk()
 window.title("Snake game")
 window.resizable(False, False)
